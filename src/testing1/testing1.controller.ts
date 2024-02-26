@@ -8,6 +8,7 @@ import {
   Delete,
   Req,
   Res,
+  Inject,
 } from '@nestjs/common';
 import { Testing1Service } from './testing1.service';
 import { CreateTesting1Dto } from './dto/create-testing1.dto';
@@ -16,7 +17,10 @@ import { Response, Request } from 'express';
 
 @Controller('testing1')
 export class Testing1Controller {
-  constructor(private readonly testing1Service: Testing1Service) {}
+  constructor(
+    @Inject('PAYMENT_SERVICE')
+    private readonly testing1Service: Testing1Service,
+  ) {}
 
   @Get()
   getPayments(@Req() request: Request, @Res() response: Response) {

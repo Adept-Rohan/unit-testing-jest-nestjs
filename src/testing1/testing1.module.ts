@@ -4,6 +4,12 @@ import { Testing1Controller } from './testing1.controller';
 
 @Module({
   controllers: [Testing1Controller],
-  providers: [Testing1Service],
+  providers: [
+    {
+      provide: 'PAYMENT_SERVICE',
+      useClass: Testing1Service,
+    },
+    Testing1Service,
+  ],
 })
 export class Testing1Module {}
